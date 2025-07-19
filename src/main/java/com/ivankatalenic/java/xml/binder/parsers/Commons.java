@@ -1,6 +1,6 @@
-package com.ivankatalenic.binder.parsers;
+package com.ivankatalenic.java.xml.binder.parsers;
 
-import com.ivankatalenic.binder.BinderException;
+import com.ivankatalenic.java.xml.binder.BinderException;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 

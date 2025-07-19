@@ -1,4 +1,4 @@
-package com.ivankatalenic.binder;
+package com.ivankatalenic.java.xml.binder;
 
 import org.w3c.dom.Node;
 

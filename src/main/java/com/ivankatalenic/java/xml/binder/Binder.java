@@ -1,7 +1,9 @@
-package com.ivankatalenic.binder;
+package com.ivankatalenic.java.xml.binder;
 
 import com.ivankatalenic.binder.annotations.*;
 import com.ivankatalenic.binder.parsers.*;
+import com.ivankatalenic.java.xml.binder.annotations.*;
+import com.ivankatalenic.java.xml.binder.parsers.*;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

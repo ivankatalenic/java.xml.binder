@@ -1,7 +1,7 @@
-module java.xml.binder {
+module com.ivankatalenic.java.xml.binder {
 	requires java.xml;
 
-	exports com.ivankatalenic.binder;
-	exports com.ivankatalenic.binder.annotations;
-	exports com.ivankatalenic.binder.parsers;
+	exports com.ivankatalenic.java.xml.binder;
+	exports com.ivankatalenic.java.xml.binder.annotations;
+	exports com.ivankatalenic.java.xml.binder.parsers;
 }

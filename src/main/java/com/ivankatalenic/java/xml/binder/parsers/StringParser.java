@@ -1,12 +1,12 @@
-package com.ivankatalenic.binder.parsers;
+package com.ivankatalenic.java.xml.binder.parsers;
 
-import com.ivankatalenic.binder.BinderException;
-import com.ivankatalenic.binder.Parser;
+import com.ivankatalenic.java.xml.binder.BinderException;
+import com.ivankatalenic.java.xml.binder.Parser;
 import org.w3c.dom.Node;
 
 import java.lang.annotation.Annotation;
 
-import static com.ivankatalenic.binder.parsers.Commons.extractString;
+import static com.ivankatalenic.java.xml.binder.parsers.Commons.extractString;
 
 public class StringParser implements Parser {
 	@Override
