@@ -2,7 +2,6 @@ package com.ivankatalenic.java.xml.binder.test;
 
 import com.ivankatalenic.java.xml.binder.Binder;
 import com.ivankatalenic.java.xml.binder.BinderException;
-import com.ivankatalenic.binder.annotations.*;
 import com.ivankatalenic.java.xml.binder.annotations.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
