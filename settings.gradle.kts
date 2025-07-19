@@ -1,1 +1,1 @@
-rootProject.name = "java.xml.binder"
+rootProject.name = "com.ivankatalenic.java.xml.binder"
