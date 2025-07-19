@@ -4,6 +4,9 @@ import org.w3c.dom.Node;
 
 import java.lang.annotation.Annotation;
 
+/**
+ * An interface for a parser that will extract information from the DOM node and create an instance of a custom type (e.g. UUID parser).
+ */
 public interface Parser {
 	/**
 	 * Parses the given type from the {@code srcNode}.

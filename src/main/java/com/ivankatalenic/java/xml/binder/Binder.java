@@ -18,6 +18,10 @@ import java.lang.reflect.RecordComponent;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * Binder is used for binding an XML document (represented by a DOM tree) to a user-defined class,
+ * possibly supplemented with annotations on the class' fields that guide the binding process.
+ */
 public class Binder {
 	private final XPath xpath;
 	private final Map<Class<?>, Parser> parsers;
@@ -126,6 +130,14 @@ public class Binder {
 		parsers.put(UUID.class, new UUIDParser());
 	}
 
+	/**
+	 * Bind the XML document (<code>doc</code>) to a user-defined destination class (<code>destClass</code>).
+	 * @param doc The XML document represented by a W3C DOM tree.
+	 * @param destClass The user-defined class with possibly annotated fields that will contain the data from the document.
+	 * @return An instance of the <code>destClass</code>.
+	 * @param <T> The type of the destination class.
+	 * @throws BinderException If binding fails due to missing nodes in the XML document or some other run-time error.
+	 */
 	public <T> T Bind(Document doc, Class<T> destClass) throws BinderException {
 		checkDocClass(destClass);
 		return parseFromNode(doc, destClass, null);
