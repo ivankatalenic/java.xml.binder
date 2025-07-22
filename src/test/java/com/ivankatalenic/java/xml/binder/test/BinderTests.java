@@ -38,7 +38,7 @@ public class BinderTests {
 		final var xmlDoc = """
 						<root>Hello!</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document1.class);
 
@@ -58,7 +58,7 @@ public class BinderTests {
 							<num>25</num>
 						</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document2.class);
 
@@ -76,7 +76,7 @@ public class BinderTests {
 		final var xmlDoc = """
 						<root>e2</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document4.class);
 
@@ -102,7 +102,7 @@ public class BinderTests {
 		final var xmlDoc = """
 						<root>e2</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document5.class);
 
@@ -117,7 +117,7 @@ public class BinderTests {
 		final var xmlDoc = """
 						<root>https://ivankatalenic.com</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document6.class);
 
@@ -132,7 +132,7 @@ public class BinderTests {
 		final var xmlDoc = """
 						<root>239e6b5e-78f5-4c7d-bf6d-adee98bc8b8f</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document7.class);
 
@@ -157,7 +157,7 @@ public class BinderTests {
 		final var xmlDoc = """
 						<root>Hello,World</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document8.class);
 
@@ -180,7 +180,7 @@ public class BinderTests {
 							<str>Hello</str>
 						</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document9.class);
 
@@ -196,7 +196,7 @@ public class BinderTests {
 							<opt>World</opt>
 						</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document9.class);
 
@@ -218,7 +218,7 @@ public class BinderTests {
 							<str2>World</str2>
 						</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		assertThrows(BinderException.class, () -> binder.Bind(dom, document10.class));
 	}
@@ -239,7 +239,7 @@ public class BinderTests {
 							<str2>World</str2>
 						</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document11.class);
 		assertEquals("Hello", doc.root.str1);
@@ -263,7 +263,7 @@ public class BinderTests {
 							<str2>World</str2>
 						</root>
 						""";
-		final var dom = domParser.parse(new InputSource(StringReader.of(xmlDoc)));
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
 		final var doc = binder.Bind(dom, document12.class);
 		assertEquals("Hello", doc.root.str1);
