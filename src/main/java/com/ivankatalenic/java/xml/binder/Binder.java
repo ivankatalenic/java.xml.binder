@@ -118,14 +118,28 @@ public class Binder {
 
 	private void setUpDefaultParsers() {
 		parsers.put(String.class, new StringParser());
+
+		// Primitive types
+		// For each primitive type there are two different Class objects.
+		// For example: one for int.class and one for Integer.class.
+		// This is the case in which the Java Language Specification and its API are contradictory.
 		parsers.put(int.class, new IntParser());
+		parsers.put(Integer.class, new IntParser());
 		parsers.put(short.class, new ShortParser());
+		parsers.put(Short.class, new ShortParser());
 		parsers.put(long.class, new LongParser());
+		parsers.put(Long.class, new LongParser());
 		parsers.put(float.class, new FloatParser());
+		parsers.put(Float.class, new FloatParser());
 		parsers.put(double.class, new DoubleParser());
+		parsers.put(Double.class, new DoubleParser());
 		parsers.put(byte.class, new ByteParser());
+		parsers.put(Byte.class, new ByteParser());
 		parsers.put(char.class, new CharParser());
+		parsers.put(Character.class, new CharParser());
 		parsers.put(boolean.class, new BooleanParser());
+		parsers.put(Boolean.class, new BooleanParser());
+
 		parsers.put(URL.class, new URLParser());
 		parsers.put(UUID.class, new UUIDParser());
 	}

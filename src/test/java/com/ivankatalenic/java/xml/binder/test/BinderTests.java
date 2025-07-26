@@ -30,6 +30,25 @@ public class BinderTests {
 		binder = new Binder();
 	}
 
+	public record XmlDto(Statement statement) {};
+	public record Statement(Account account) {};
+	public record Account(@XMLFromAttribute String owner, @XMLFromAttribute Double balance) {};
+	@Test
+	public void canonicalExample() throws IOException, BinderException, SAXException {
+		final var xmlDoc = """
+				<?xml version="1.0" encoding="utf-8"?>
+				<statement>
+					<account owner="Google" balance="10000.0"/>
+				</statement>
+				""";
+		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
+
+		final var dto = binder.Bind(dom, XmlDto.class);
+
+		assertEquals("Google", dto.statement().account().owner());
+		assertEquals(10000.0, dto.statement().account().balance());
+	}
+
 	public static class document1 {
 		public String root;
 	}
