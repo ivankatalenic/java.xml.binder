@@ -1,5 +1,8 @@
+import com.github.spotbugs.snom.SpotBugsTask
+
 plugins {
 	id("java-library")
+	id("com.github.spotbugs-base") version "6.2.2"
 }
 
 group = "com.ivankatalenic"
@@ -18,9 +21,15 @@ dependencies {
 tasks.test {
 	useJUnitPlatform()
 }
-
-getTasksByName("compileJava", true)
-	.forEach {
-		if (it !is JavaCompile) return@forEach;
-		it.options.compilerArgs.add("-Xlint:unchecked")
-	}
+tasks.register<SpotBugsTask>("spotbugsMain") {
+	sourceDirs.setFrom(sourceSets.main.get().allSource.sourceDirectories)
+	classDirs.setFrom(sourceSets.main.get().output)
+	auxClassPaths.setFrom(sourceSets.main.get().compileClasspath)
+	description = "Run SpotBugs analysis for the main source set "
+}
+tasks.check {
+	dependsOn("spotbugsMain")
+}
+tasks.named<JavaCompile>("compileJava") {
+	options.compilerArgs.add("-Xlint:unchecked")
+}
