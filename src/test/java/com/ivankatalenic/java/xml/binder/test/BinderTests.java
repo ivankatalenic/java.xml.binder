@@ -43,13 +43,13 @@ public class BinderTests {
 				""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var dto = binder.Bind(dom, XmlDto.class);
+		final var dto = binder.bind(dom, XmlDto.class);
 
 		assertEquals("Google", dto.statement().account().owner());
 		assertEquals(10000.0, dto.statement().account().balance());
 	}
 
-	public static class document1 {
+	public static class SingleStringDoc {
 		public String root;
 	}
 	@Test
@@ -59,16 +59,16 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document1.class);
+		final var doc = binder.bind(dom, SingleStringDoc.class);
 
 		assertEquals("Hello!", doc.root);
 	}
 
-	public static class document2 {
-		public static class doc_in {
+	public static class ContainerDoc {
+		public static class NestedDoc {
 			public int num;
 		}
-		public doc_in root;
+		public NestedDoc root;
 	}
 	@Test
 	public void nestedNumber() throws IOException, SAXException, BinderException {
@@ -79,42 +79,42 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document2.class);
+		final var doc = binder.bind(dom, ContainerDoc.class);
 
 		assertEquals(25, doc.root.num);
 	}
 
-	public static class document4 {
-		public enum e {
-			e1, e2, e3;
+	public static class EnumDoc {
+		public enum ThreeEnum {
+			E1, E2, E3;
 		}
-		public e root;
+		public ThreeEnum root;
 	}
 	@Test
 	public void enumConstant() throws IOException, SAXException, BinderException {
 		final var xmlDoc = """
-						<root>e2</root>
+						<root>E2</root>
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document4.class);
+		final var doc = binder.bind(dom, EnumDoc.class);
 
-		assertEquals(document4.e.e2, doc.root);
+		assertEquals(EnumDoc.ThreeEnum.E2, doc.root);
 	}
 
-	public static class document5 {
+	public static class StringEnumDoc {
 		@XMLEnumUseString
-		public enum e {
+		public enum StringEnum {
 			E1("e1"), E2("e2"), E3("e3");
 
 			private final String val;
-			e(String val) { this.val = val; }
+			StringEnum(String val) { this.val = val; }
 			@Override
 			public String toString() {
 				return val;
 			}
 		}
-		public e root;
+		public StringEnum root;
 	}
 	@Test
 	public void enumConstantFromString() throws IOException, SAXException, BinderException {
@@ -123,12 +123,12 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document5.class);
+		final var doc = binder.bind(dom, StringEnumDoc.class);
 
-		assertEquals(document5.e.E2, doc.root);
+		assertEquals(StringEnumDoc.StringEnum.E2, doc.root);
 	}
 
-	public static class document6 {
+	public static class UrlDoc {
 		public URL root;
 	}
 	@Test
@@ -138,12 +138,12 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document6.class);
+		final var doc = binder.bind(dom, UrlDoc.class);
 
 		assertEquals(new URI("https://ivankatalenic.com").toURL(), doc.root);
 	}
 
-	public static class document7 {
+	public static class UuidDoc {
 		public UUID root;
 	}
 	@Test
@@ -153,12 +153,12 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document7.class);
+		final var doc = binder.bind(dom, UuidDoc.class);
 
 		assertEquals(UUID.fromString("239e6b5e-78f5-4c7d-bf6d-adee98bc8b8f"), doc.root);
 	}
 
-	public static class document8 {
+	public static class ClassParseDoc {
 		public static class A {
 			public final String str1;
 			public final String str2;
@@ -178,13 +178,13 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document8.class);
+		final var doc = binder.bind(dom, ClassParseDoc.class);
 
 		assertEquals("Hello", doc.root.str1);
 		assertEquals("World", doc.root.str2);
 	}
 
-	public static class document9 {
+	public static class OptionalElemDoc {
 		public static class A {
 			public String str;
 			@XMLOptional
@@ -201,7 +201,7 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document9.class);
+		final var doc = binder.bind(dom, OptionalElemDoc.class);
 
 		assertEquals("Hello", doc.root.str);
 		assertNull(doc.root.opt);
@@ -217,13 +217,13 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document9.class);
+		final var doc = binder.bind(dom, OptionalElemDoc.class);
 
 		assertEquals("Hello", doc.root.str);
 		assertEquals("World", doc.root.opt);
 	}
 
-	public static class document10 {
+	public static class MissingElemDoc {
 		public static class A {
 			public String str1;
 			public String str2;
@@ -239,10 +239,10 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		assertThrows(BinderException.class, () -> binder.Bind(dom, document10.class));
+		assertThrows(BinderException.class, () -> binder.bind(dom, MissingElemDoc.class));
 	}
 
-	public static class document11 {
+	public static class AttributeDoc {
 		public static class A {
 			@XMLFromAttribute
 			public String str1;
@@ -260,12 +260,12 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document11.class);
+		final var doc = binder.bind(dom, AttributeDoc.class);
 		assertEquals("Hello", doc.root.str1);
 		assertEquals("World", doc.root.str2);
 	}
 
-	public static class document12 {
+	public static class AttributeNameDoc {
 		public static class A {
 			@XMLFromAttribute
 			@XMLName("customName")
@@ -284,7 +284,7 @@ public class BinderTests {
 						""";
 		final var dom = domParser.parse(new InputSource(new StringReader(xmlDoc)));
 
-		final var doc = binder.Bind(dom, document12.class);
+		final var doc = binder.bind(dom, AttributeNameDoc.class);
 		assertEquals("Hello", doc.root.str1);
 		assertEquals("World", doc.root.str2);
 	}

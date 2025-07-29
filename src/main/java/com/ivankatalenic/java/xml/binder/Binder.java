@@ -152,7 +152,7 @@ public class Binder {
 	 * @param <T> The type of the destination class.
 	 * @throws BinderException If binding fails due to missing nodes in the XML document or some other run-time error.
 	 */
-	public <T> T Bind(Document doc, Class<T> destClass) throws BinderException {
+	public <T> T bind(Document doc, Class<T> destClass) throws BinderException {
 		checkDocClass(destClass);
 		return parseFromNode(doc, destClass, null);
 	}
