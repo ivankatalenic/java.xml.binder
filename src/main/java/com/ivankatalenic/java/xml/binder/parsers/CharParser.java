@@ -15,7 +15,7 @@ public class CharParser implements Parser {
 			final var text = srcNode.getTextContent();
 			return text.charAt(0);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse an Character from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
+			throw new BinderException("failed to get the first text character from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

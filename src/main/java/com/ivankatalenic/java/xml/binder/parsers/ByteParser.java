@@ -14,9 +14,9 @@ public class ByteParser implements Parser {
 	public Object parseFromNode(Node srcNode, Annotation[] destAnnotations) throws BinderException {
 		try {
 			final var text = extractString(srcNode);
-			return Byte.parseByte(text);
+			return Byte.decode(text);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse an Byte from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
+			throw new BinderException("failed to parse a byte from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

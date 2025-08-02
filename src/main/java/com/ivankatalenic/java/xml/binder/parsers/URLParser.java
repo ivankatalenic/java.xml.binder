@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
 import java.lang.annotation.Annotation;
 import java.net.URI;
 
+import static com.ivankatalenic.java.xml.binder.parsers.Commons.calculateNodeLocation;
 import static com.ivankatalenic.java.xml.binder.parsers.Commons.extractString;
 
 public class URLParser implements Parser {
@@ -16,7 +17,7 @@ public class URLParser implements Parser {
 		try {
 			return new URI(nodeText).toURL();
 		} catch (Exception e) {
-			throw new BinderException("failed to parse a URL from a node text \"%s\"".formatted(nodeText), e);
+			throw new BinderException("failed to parse a URL from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

@@ -11,7 +11,7 @@ public class Commons {
 	public static String extractString(Node node) throws BinderException {
 		final var text = node.getTextContent();
 		if (text == null) {
-			throw new BinderException("failed to extract string from a node \"%s\"".formatted(calculateNodeLocation(node)));
+			throw new BinderException("failed to extract a string from a node \"%s\"".formatted(calculateNodeLocation(node)));
 		}
 		return text.trim();
 	}

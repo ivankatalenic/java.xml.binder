@@ -16,7 +16,7 @@ public class FloatParser implements Parser {
 			final var text = extractString(srcNode);
 			return Float.parseFloat(text);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse an Float from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
+			throw new BinderException("failed to parse a float from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

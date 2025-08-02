@@ -16,7 +16,7 @@ public class BooleanParser implements Parser {
 			final var text = extractString(srcNode);
 			return Boolean.parseBoolean(text);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse an Boolean from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
+			throw new BinderException("failed to parse a boolean from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

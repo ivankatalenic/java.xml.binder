@@ -16,7 +16,7 @@ public class ShortParser implements Parser {
 			final var text = extractString(srcNode);
 			return Short.parseShort(text);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse an Short from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
+			throw new BinderException("failed to parse a short from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

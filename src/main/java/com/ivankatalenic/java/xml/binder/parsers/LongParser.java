@@ -16,7 +16,7 @@ public class LongParser implements Parser {
 			final var text = extractString(srcNode);
 			return Long.parseLong(text);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse an Long from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
+			throw new BinderException("failed to parse a long from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

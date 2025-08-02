@@ -16,7 +16,7 @@ public class IntParser implements Parser {
 			final var text = extractString(srcNode);
 			return Integer.parseInt(text);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse an Integer from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
+			throw new BinderException("failed to parse an integer from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

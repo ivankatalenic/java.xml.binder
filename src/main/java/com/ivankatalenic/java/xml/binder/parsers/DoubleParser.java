@@ -16,7 +16,7 @@ public class DoubleParser implements Parser {
 			final var text = extractString(srcNode);
 			return Double.parseDouble(text);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse an Double from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
+			throw new BinderException("failed to parse a double from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }

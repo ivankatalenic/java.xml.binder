@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
 import java.lang.annotation.Annotation;
 import java.util.UUID;
 
+import static com.ivankatalenic.java.xml.binder.parsers.Commons.calculateNodeLocation;
 import static com.ivankatalenic.java.xml.binder.parsers.Commons.extractString;
 
 public class UUIDParser implements Parser {
@@ -16,7 +17,7 @@ public class UUIDParser implements Parser {
 		try {
 			return UUID.fromString(nodeText);
 		} catch (Exception e) {
-			throw new BinderException("failed to parse UUID from node text \"%s\"".formatted(nodeText));
+			throw new BinderException("failed to parse a UUID from a node \"%s\"".formatted(calculateNodeLocation(srcNode)), e);
 		}
 	}
 }
